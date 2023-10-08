@@ -1,20 +1,28 @@
-use crate::queue::Queue;
+use std::rc::Rc;
+use crate::linked_list::{Node, LinkedList};
 
-mod stack;
-mod queue;
+mod linked_list;
 
 fn main() {
-    let mut queue = Queue {
-        queue: vec![],
-        top: 0,
-        rear: 0,
+    let mut linked_list = LinkedList {
+        head: Node {
+            data: String::from("Luis"),
+            next: Option::None,
+        }
     };
-    queue.enqueue(1);
-    queue.enqueue(2);
-    queue.enqueue(3);
-    queue.print();
-    queue.dequeue();
-    dbg!(&queue.peek());
-    queue.dequeue();
-    queue.print();
+    let mut node_two = Node {
+        data: String::from("Natalia"),
+        next: Option::None,
+    };
+    let mut node_three = Node {
+        data: String::from("Palomo"),
+        next: Option::None,
+    };
+    //Linked list
+    linked_list.head.next = Option::Some(Rc::new(&mut node_two));
+    node_two.next = Option::Some(Rc::new(&mut node_three));
+    node_three.next = Option::None;
+    dbg!(linked_list);
+    dbg!(node_two);
+    dbg!(node_three);
 }
