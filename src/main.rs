@@ -2,6 +2,7 @@ use std::rc::Rc;
 use crate::linked_list::{Node, LinkedList};
 
 mod linked_list;
+mod problems;
 
 fn main() {
     let mut linked_list = LinkedList {
